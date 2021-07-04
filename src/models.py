@@ -90,5 +90,45 @@ class Planet(Base):
     terrain = Column(String(250), nullable=False)
     url = Column(String(250), nullable=False)
 
+class FavoritePlanet(Base):
+    __tablename__ = 'favorite_planet'
+    # Here we define columns for the table address.
+    # Notice that each column is also a normal Python instance attribute.
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship(User)
+    planet_id = Column(Integer, ForeignKey('planet.id'))
+    planet = relationship(Planet)
+
+class Vehicles(base):
+    __tablename__ = 'vehicles'
+    # Here we define columns for the table address.
+    # Notice that each column is also a normal Python instance attribute.
+    id = Column(Integer, primary_key=True)
+    properties = Column(String(250), nullable=False)
+    cargo_capacity = Column(String(250), nullable=False)
+    consumables = Column(String(250), nullable=False)
+    cost_in_credits = Column(String(250), nullable=False)
+    created = Column(String(250), nullable=False)
+    crew = Column(String(250), nullable=False)
+    edited = Column(String(250), nullable=False)
+    length = Column(String(250), nullable=False)
+    manufacturer = Column(String(250), nullable=False)
+    max_atmosphering_speed = Column(String(250), nullable=False)
+    model = Column(String(250), nullable=False)
+    name = Column(String(250), nullable=False)
+    passengers = Column(String(250), nullable=False)
+    pilots = Column(String(250), nullable=False)
+
+class FavoriteVehicles(Base):
+    __tablename__ = 'favorite_vehicles'
+    # Here we define columns for the table address.
+    # Notice that each column is also a normal Python instance attribute.
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship(User)
+    vehicles_id = Column(Integer, ForeignKey('vehicles.id'))
+    vehicles = relationship(Vehicles)    
+
 ## Draw from SQLAlchemy base
 render_er(Base, 'diagram.png')
